@@ -65,11 +65,15 @@ public class MiniTwitter {
 		frmMinitwitter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMinitwitter.getContentPane().setLayout(null);
 		
+		
+		//TextPane Output
 		final JTextPane txtpnOutput = new JTextPane();
 		txtpnOutput.setText("Output");
 		txtpnOutput.setBounds(395, 251, 374, 72);
 		frmMinitwitter.getContentPane().add(txtpnOutput);
 		
+		
+		//Add User Button
 		JButton btnAddUser = new JButton("Add User");
 		btnAddUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -86,6 +90,8 @@ public class MiniTwitter {
 		btnAddUser.setBounds(395, 48, 182, 60);
 		frmMinitwitter.getContentPane().add(btnAddUser);
 		
+		
+		//Add Group Button
 		JButton btnAddGroup = new JButton("Add Group");
 		btnAddGroup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,6 +104,8 @@ public class MiniTwitter {
 		btnAddGroup.setBounds(587, 48, 182, 60);
 		frmMinitwitter.getContentPane().add(btnAddGroup);
 		
+		
+		//Open User View Button
 		JButton btnOpenUserView = new JButton("Open User View");
 		btnOpenUserView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,6 +124,7 @@ public class MiniTwitter {
 		btnOpenUserView.setBounds(395, 174, 374, 60);
 		frmMinitwitter.getContentPane().add(btnOpenUserView);
 		
+		// Positive Messages Percentage Button
 		JButton btnShowPositivePercentage = new JButton("Show Positive Percentage");
 		btnShowPositivePercentage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,6 +136,7 @@ public class MiniTwitter {
 		btnShowPositivePercentage.setBounds(587, 422, 182, 66);
 		frmMinitwitter.getContentPane().add(btnShowPositivePercentage);
 		
+		//Total Messages Button
 		JButton btnShowMessagesTotal = new JButton("Show Messages Total");
 		btnShowMessagesTotal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,6 +147,8 @@ public class MiniTwitter {
 		btnShowMessagesTotal.setBounds(395, 422, 182, 66);
 		frmMinitwitter.getContentPane().add(btnShowMessagesTotal);
 		
+		
+		//Total Users Button
 		JButton btnShowUserTotal = new JButton("Show User Total");
 		btnShowUserTotal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,6 +159,8 @@ public class MiniTwitter {
 		btnShowUserTotal.setBounds(395, 345, 182, 66);
 		frmMinitwitter.getContentPane().add(btnShowUserTotal);
 		
+		
+		//Total Group Button
 		JButton btnShowGroupTotal = new JButton("Show Group Total");
 		btnShowGroupTotal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -157,18 +171,22 @@ public class MiniTwitter {
 		btnShowGroupTotal.setBounds(587, 345, 182, 66);
 		frmMinitwitter.getContentPane().add(btnShowGroupTotal);
 		
+		//User Id TextField
 		txtUserId = new JTextField();
 		txtUserId.setText("User Id");
 		txtUserId.setBounds(395, 11, 182, 26);
 		frmMinitwitter.getContentPane().add(txtUserId);
 		txtUserId.setColumns(10);
 		
+		//Group Id TextField
 		txtGroupId = new JTextField();
 		txtGroupId.setText("Group Id");
 		txtGroupId.setBounds(587, 11, 182, 26);
 		frmMinitwitter.getContentPane().add(txtGroupId);
 		txtGroupId.setColumns(10);
 		
+		//Tree
+		//TODO:
 		JTree TreeView = new JTree();		
 		TreeView.setModel(new DefaultTreeModel(
 			new DefaultMutableTreeNode("Root") {
@@ -200,6 +218,9 @@ public class MiniTwitter {
 		TreeView.setBounds(10, 16, 375, 472);
 		frmMinitwitter.getContentPane().add(TreeView);
 		
+		
+		//User View Id Text Field
+		//Created to work around JTree
 		txtUserViewId = new JTextField();
 		txtUserViewId.setText("User View Id");
 		txtUserViewId.setBounds(395, 137, 374, 26);
