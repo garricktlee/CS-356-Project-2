@@ -119,7 +119,9 @@ public class MiniTwitter {
 		JButton btnShowPositivePercentage = new JButton("Show Positive Percentage");
 		btnShowPositivePercentage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Show Positive Percentage");
+				positivePercentage test = new positivePercentage();
+				txtpnOutput.setText("Percentage of positive Tweets : " + test.getPercentage() + "%");
+				System.out.println("Percentage of positive Tweets : " + test.getPercentage() + "%");
 			}
 		});
 		btnShowPositivePercentage.setBounds(587, 422, 182, 66);
