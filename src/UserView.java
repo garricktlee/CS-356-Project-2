@@ -1,14 +1,17 @@
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextPane;
 
 
 public class UserView {
-
-	private JFrame frame;
+	private Users User;
+	private String UserID;
+	private JFrame frmUserview;
 	private JTextField txtUserId;
 	private JButton btnPostTweet;
 	private JTextField txtTweetMessage;
@@ -16,12 +19,13 @@ public class UserView {
 
 	/**
 	 * Launch the application.
+	 * @param string 
 	 */
 
-	public void run() {
+	public void run(String user) {
 		try {
-			UserView window = new UserView();
-			window.frame.setVisible(true);
+			UserView window = new UserView(user);
+			window.frmUserview.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -29,8 +33,13 @@ public class UserView {
 
 	/**
 	 * Create the application.
+	 * @param string 
 	 */
-	public UserView() {
+	public UserView(String user) {
+		this.UserID = user;
+		if(MiniTwitter.userMap.containsKey(user)){
+			this.User = MiniTwitter.userMap.get(user);
+		}
 		initialize();
 	}
 
@@ -38,49 +47,61 @@ public class UserView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 505, 501);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmUserview = new JFrame();
+		frmUserview.setTitle(UserID);
+		frmUserview.setBounds(100, 100, 505, 501);
+		frmUserview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmUserview.getContentPane().setLayout(null);
+		
+		final JTextPane txtpnNewsFeed = new JTextPane();
+		txtpnNewsFeed.setText("News Feed");
+		txtpnNewsFeed.setBounds(10, 275, 469, 177);
+		frmUserview.getContentPane().add(txtpnNewsFeed);
+		
+		txtpnCurrentFollowing = new JTextPane();
+		txtpnCurrentFollowing.setText("Current Following");
+		txtpnCurrentFollowing.setBounds(10, 70, 469, 135);
+		frmUserview.getContentPane().add(txtpnCurrentFollowing);
 		
 		JButton btnFollowUser = new JButton("Follow User");
 		btnFollowUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				User.addFollower(txtUserId.getText());
+				
+				String followers = User.returnFollowers();
+				txtpnCurrentFollowing.setText(followers);		
+				
 				System.out.println("Follor User: " + txtUserId.getText());
 			}
 		});
 		btnFollowUser.setBounds(247, 11, 232, 48);
-		frame.getContentPane().add(btnFollowUser);
+		frmUserview.getContentPane().add(btnFollowUser);
 		
 		txtUserId = new JTextField();
 		txtUserId.setText("User Id");
 		txtUserId.setBounds(10, 11, 223, 48);
-		frame.getContentPane().add(txtUserId);
+		frmUserview.getContentPane().add(txtUserId);
 		txtUserId.setColumns(10);
 		
 		btnPostTweet = new JButton("Post Tweet");
 		btnPostTweet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Post Tweet: " + txtTweetMessage.toString());
+				User.tweet(txtTweetMessage.getText());
+				String news = User.returnTweets();
+				txtpnNewsFeed.setText(news);				
 				}
 		});
 		btnPostTweet.setBounds(275, 216, 204, 48);
-		frame.getContentPane().add(btnPostTweet);
+		frmUserview.getContentPane().add(btnPostTweet);
 		
 		txtTweetMessage = new JTextField();
 		txtTweetMessage.setText("Tweet Message");
 		txtTweetMessage.setBounds(10, 216, 255, 48);
-		frame.getContentPane().add(txtTweetMessage);
+		frmUserview.getContentPane().add(txtTweetMessage);
 		txtTweetMessage.setColumns(10);
 		
-		JTextPane txtpnNewsFeed = new JTextPane();
-		txtpnNewsFeed.setText("News Feed");
-		txtpnNewsFeed.setBounds(10, 275, 469, 177);
-		frame.getContentPane().add(txtpnNewsFeed);
+
 		
-		txtpnCurrentFollowing = new JTextPane();
-		txtpnCurrentFollowing.setText("Current Following");
-		txtpnCurrentFollowing.setBounds(10, 70, 469, 135);
-		frame.getContentPane().add(txtpnCurrentFollowing);
+
 	}
 }
